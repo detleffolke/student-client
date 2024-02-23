@@ -4,30 +4,35 @@ import axios from 'axios';
 const CreateStudent = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [error, setError] = useState(null); // State for storing error message
+    const [error, setError] = useState(null);
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
-        axios.post('http://localhost:8080/api/student/create', { firstName, lastName })
-            .then(response => {
-                console.log('Student created:', response.data);
-                // Reset form after successful submission
-                setFirstName('');
-                setLastName('');
-                // Clear any previous error messages
-                setError(null);
-            })
-            .catch(error => {
-                console.error('Error creating student: ', error);
-                // Set the error state with the error message received from the server
-                setError(error.message || 'An error occurred while creating the student.');
+
+        // Client-side validation
+        if (!firstName.trim() || !lastName.trim()) {
+            setError('First name and last name are required.');
+            return;
+        }
+
+        try {
+            const response = await axios.post('http://localhost:8080/api/student/create', {
+                firstName: firstName.trim(),
+                lastName: lastName.trim()
             });
+            console.log('Student created:', response.data);
+            setFirstName('');
+            setLastName('');
+            setError(null);
+        } catch (error) {
+            console.error('Error creating student: ', error);
+            setError(error.response.data.message || 'An error occurred while creating the student.');
+        }
     };
 
     return (
         <div>
             <h1>Create Student</h1>
-            {/* Display error message if error state is not null */}
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <form onSubmit={handleSubmit}>
                 <div>
