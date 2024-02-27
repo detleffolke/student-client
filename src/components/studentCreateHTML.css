@@ -1,0 +1,41 @@
+/* src/components/StudentCreateHTML.css */
+.student-create-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    width: 300px;
+}
+
+.student-create-container h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.student-create-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.student-create-form label {
+    margin-bottom: 10px;
+}
+
+.student-create-form input {
+    padding: 8px;
+    margin-bottom: 15px;
+}
+
+.student-create-form button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.student-create-form button:hover {
+    background-color: #0056b3;
+}

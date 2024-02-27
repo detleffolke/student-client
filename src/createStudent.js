@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import StudentCreate from './components/studentCreateHTML';
 
 const CreateStudent = () => {
     const [firstName, setFirstName] = useState('');
