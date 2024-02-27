@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import StudentCreate from './components/studentCreateHTML';
+const apiUrl = process.env.REACT_APP_API_URL
 
 const CreateStudent = () => {
     const [firstName, setFirstName] = useState('');
@@ -17,7 +18,7 @@ const CreateStudent = () => {
         }
 
         try {
-            const response = await axios.post('http://localhost:8080/api/student/create', {
+            const response = await axios.post(`${apiUrl}/api/student/create`, {
                 firstName: firstName.trim(),
                 lastName: lastName.trim()
             });
